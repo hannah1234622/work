@@ -22,30 +22,28 @@ try {
     curl_close($curl_handle);//關閉url請求
     $arr_data=mb_split("\n",$data);//將字串轉陣列
 
-    $sql="SELECT COUNT(*) FROM masks WHERE m_id";//搜尋資料表 masks 他的 m_id 數量
-    $result=$db->prepare($sql); //準備要執行sql語句
-    $result->execute();
-    $row = $result->fetchColumn(0);//從0開始計算欄位值
-    echo $row;
+    /*$sql="SELECT COUNT(*) FROM masks";
+    $result=$db->query($sql);
+    echo "共有:".$result;*/
 
     for ($i=1; $i < count($arr_data)-1; $i++) {
         $arr_data1=mb_split(",",$arr_data[$i]);
-        if($row>0){
+        /*if(isset($count)){
             try {
-                $sql="UPDATE masks SET Institution_Code='$arr_data1[0]',Institution_Name='$arr_data1[1]',Institution_Address='$arr_data1[2]',Institution_Phone='$arr_data1[3]',Adult_Mask='$arr_data1[4]',Child_Mask='$arr_data1[5]',Source_Time='$arr_data1[6]' WHERE m_id=$i;";
+                $sql="UPDATE masks(醫事機構代碼,醫事機構名稱,醫事機構地址,醫事機構電話,成人口罩剩餘數,兒童口罩剩餘數,來源資料時間)VALUES('$arr_data1[0]','$arr_data1[1]','$arr_data1[2]','$arr_data1[3]','$arr_data1[4]','$arr_data1[5]','$arr_data1[6]')";
                 $db->exec($sql);
             } catch (PDOExcertion $e) {
                 echo $sql."<br/>".$e->getMessage();
-            }            
-        }else{ //若資料庫沒資料則新增
+            }
+        }else{*/
             try {
                 $sql="INSERT INTO masks(Institution_Code,Institution_Name,Institution_Address,Institution_Phone,Adult_Mask,Child_Mask,Source_Time)VALUES('$arr_data1[0]','$arr_data1[1]','$arr_data1[2]','$arr_data1[3]','$arr_data1[4]','$arr_data1[5]','$arr_data1[6]')";
                 $db->exec($sql);
             } catch (PDOExcertion $e) {
                 echo $sql."<br/>".$e->getMessage();
             }            
-        }
+        //}
 
     }
-    $conn=null;
+    //$conn=null;
 ?>
