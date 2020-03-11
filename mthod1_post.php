@@ -1,9 +1,9 @@
 <?php
 
     $county = array("請選擇","台北市","基隆市","新北市","宜蘭縣","桃園市","新竹市","新竹縣","苗栗縣","台中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣","台南市","高雄市","澎湖縣","金門縣","屏東縣","台東縣","花蓮縣","連江縣");
-    $city = $_POST["city"];
-    $region = $_POST["region"];
-    function curl(){
+    
+    function curl()
+    {
         $ch = curl_init();//初始化curl 令變數為 $curlobj
         curl_setopt($ch, CURLOPT_URL,"https://quality.data.gov.tw/dq_download_json.php?nid=116285&md5_url=2150b333756e64325bdbc4a5fd45fad1");//向網址發出請求 訪問該網頁
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//執行後不打印出來
@@ -18,25 +18,30 @@
         return $arrayName; 
     }
     $arrayName=curl();
-    function search($arrayName, $region){ //search方程式匯入$arrayName陣列及$region POST的值
+
+    function search($arrayName, $region)
+    { //search方程式匯入$arrayName陣列及$region POST的值
         $arr=$result=array();
         foreach ($arrayName as $key => $value) { //取得$arrayName的key值
             foreach ($value as $val) { //求出key裡面的value值
-                if(strstr($val, $region)){ //若value符合搜尋值
+                if (strstr($val, $region)) { //若value符合搜尋值
                     array_push($arr, $key); //放入arr陣列
                 }
             }
         }
         foreach ($arr as $key => $value) { //將$arr的key值求出
-            if(array_key_exists($value, $arrayName)){//若key值存在
+            if (array_key_exists($value, $arrayName)) {//若key值存在
                 array_push($result, $arrayName[$value]);//將key裡面的值放入array
             }
         }
         return $result;
     }
+
     $option = isset($_POST['submit']) ? $_POST['submit'] : false;//判斷 $_POST['submit'] 是否存在,若不存在則跳到 false
     if ($option) {
         //存在則列印出post值
+        $city = $_POST["city"];
+        $region = $_POST["region"];    
         $search=search(search($arrayName, $region),$county[$city]);
         for ($i=0; $i < count($search); $i++) { 
             print_r($search[$i]['醫事機構代碼']);
@@ -57,5 +62,3 @@
         echo "</p>";
         exit; 
     }
-
-?>
