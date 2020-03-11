@@ -1,1 +1,1 @@
-C:\xampp\php\php.exe C:\xampp\htdocs\dashboard\test\action.php
+C:\xampp\php\php.exe C:\xampp\htdocs\dashboard\test\mthod2_data.php

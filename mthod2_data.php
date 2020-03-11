@@ -15,15 +15,14 @@
     $arr_data=curl();
 
     /**搜尋資料庫資料的數量**/
-    function count()
-    {
+    function countData($db){
         $sql="SELECT COUNT(*) FROM masks WHERE m_id";//搜尋資料表 masks 他的 m_id 數量
         $result=$db->prepare($sql); //準備要執行sql語句
         $result->execute();
-        $row = $result->fetchColumn(0);//從0開始計算欄位值
-        return $row;  
+        $row = $result->fetchColumn(0);//從0開始計算欄位值        
+        return $row;
     }
-    $row=count();
+    $row=countData($db);
 
     for ($i=0; $i < count($arr_data)-1; $i++) {
         $arr_data1=mb_split(",",$arr_data[$i]);

@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <div class="jumbotron" style="position: absolute;top: 0px;width: 100%;"><!--設置背景-->
-        <h1><span class="badge badge-secondary" style="position: absolute;left: 250px;">MASKS</span></h1></h1>
+        <h1><span class="badge badge-secondary" style="position: absolute;left: 250px;">YUHUA</span></h1></h1>
         <div style="background-color: white;width: 80%;margin-left: 10%;padding: 30px;margin-top: 5%;">
             <h1 style="color: rgb(4, 129, 255);font-weight: bold;">口罩供需即時資訊查詢</h1>
             <hr>

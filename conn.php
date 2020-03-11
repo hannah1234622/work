@@ -10,3 +10,4 @@ try {
 } catch (PDOExcertion $e) {
     echo $e->getMEssage();
 }
+?>
