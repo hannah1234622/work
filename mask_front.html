@@ -18,7 +18,18 @@ form{
     padding: 20px;
 }
 </style>
+<script>
+    var GetDayTimeValue='<%=DayTimeNum %>'; //注:GetDayTimeValue值是接受后得到的值
+    window.onload = intonload;
+    function intonload(){
+        var val = document.getElementById("city");
+        for(var i=0;i<val.length;i++){
+        val[i].selected = true;
+        break;
+    }
+    }
 
+</script>
 <body>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -37,8 +48,8 @@ form{
             </ol>
             <form action="" method="post">
                 <button type="button" class="btn btn-secondary" disabled>縣市</button>
-                <select name="city" id="city" onchange="change(this.value)" >
-                    <option value="0">請選擇</option>
+                <select name="city" id="city" onchange="change(this.value)"  onchange='this.form.submit()' >
+                    <option selected  value="<?php echo $_POST['city']; ?>">請選擇</option>
                     <option value="1">台北市</option>
                     <option value="2">基隆市</option>
                     <option value="3">新北市</option>
@@ -95,7 +106,6 @@ form{
                     echo "<td>".$row['Child_Mask']."</td>";
                     echo "<td>".$row['Source_Time']."</td>";
                     echo "</tr>";                    
-
                 }
                 echo "</tbody>";
                 echo "</table>";                
@@ -108,8 +118,8 @@ form{
                 echo "</p>";
                 
             }
-            
             ?>
+
         </div>
     </div>
 </body>
