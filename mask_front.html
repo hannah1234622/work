@@ -18,6 +18,7 @@ form{
     padding: 20px;
 }
 </style>
+<?php include("mask_show.php"); ?>
 <body>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -67,30 +68,36 @@ form{
                 </select>
                 <input type="submit" name="submit" class="btn btn-secondary" value="查詢口罩庫存">
             </form>
+
             <?php
             if (isset($_POST["city"]) && isset($_POST["region"])) {
-                //判斷 $_POST 是否存在
-                $county = array("請選擇","臺北市","基隆市","新北市","宜蘭縣","桃園市","新竹市","新竹縣","苗栗縣","臺中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣","臺南市","高雄市","澎湖縣","金門縣","屏東縣","臺東縣","花蓮縣","連江縣");
-                $city = $_POST["city"];
-                $region = $_POST["region"];
-                $county_city = $county[$city];
-            ?>
-            <table class='table table-striped'>
-                <thead>
-                    <tr>
-                        <td>機構編號</td>
-                        <td>藥局/機構名稱</td>
-                        <td>地址</td>
-                        <td>電話</td>
-                        <td>口罩庫存/大人</td>
-                        <td>口罩庫存/兒童</td>
-                        <td>更新時間</td>
-                    </thead>
-                </tr>
-            </thead>
-            <?php
+                echo "<table class='table table-striped'>";
+                echo "<thead>";
+                echo "<tr>";
+                echo "<td>機構編號</td>";
+                echo "<td>藥局/機構名稱</td>";
+                echo "<td>地址</td>";
+                echo "<td>電話</td>";
+                echo "<td>口罩庫存/大人</td>";
+                echo "<td>口罩庫存/兒童</td>";
+                echo "<td>更新時間</td>";
+                echo "</thead>";
+                echo "</tr>";
+                echo "</thead>";
                 echo "</tbody>";
-                include("mask_show.php");
+                $sth = "SELECT * FROM masks WHERE Institution_Address LIKE '%$county_city%$region%';";
+                $result=$db->query($sth);        
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "<td>".$row['Institution_Code']."</td>";
+                    echo "<td>".$row['Institution_Name']."</td>";
+                    echo "<td>".$row['Institution_Address']."</td>";
+                    echo "<td>".$row['Institution_Phone']."</td>";
+                    echo "<td>".$row['Adult_Mask']."</td>";
+                    echo "<td>".$row['Child_Mask']."</td>";
+                    echo "<td>".$row['Source_Time']."</td>";
+                    echo "</tr>";
+                }
                 echo "</tbody>";
                 echo "</table>";
             } else {
@@ -100,13 +107,11 @@ form{
                 echo "<br/>";
                 echo "更新頻率: 庫存每90秒更新一次, 備註每日更新3次(08:00、14:00、18:00)";
                 echo "</p>";
-                exit; 
+                
             }
+            
             ?>
-
         </div>
     </div>
-    
-    
 </body>
 </html>
