@@ -18,7 +18,7 @@ form{
     padding: 20px;
 }
 </style>
-<?php include("mask_show.php"); ?>
+
 <body>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -85,9 +85,7 @@ form{
                 echo "</tr>";
                 echo "</thead>";
                 echo "</tbody>";
-                $sth = "SELECT * FROM masks WHERE Institution_Address LIKE '%$county_city%$region%';";
-                $result=$db->query($sth);        
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                foreach($rows as $row){
                     echo "<tr>";
                     echo "<td>".$row['Institution_Code']."</td>";
                     echo "<td>".$row['Institution_Name']."</td>";
@@ -96,10 +94,11 @@ form{
                     echo "<td>".$row['Adult_Mask']."</td>";
                     echo "<td>".$row['Child_Mask']."</td>";
                     echo "<td>".$row['Source_Time']."</td>";
-                    echo "</tr>";
+                    echo "</tr>";                    
+
                 }
                 echo "</tbody>";
-                echo "</table>";
+                echo "</table>";                
             } else {
                 //不存在則列印出以下內容,並結束程式
                 echo "<p>";

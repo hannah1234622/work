@@ -1,6 +1,6 @@
 <?php
 
-    include("mask_conn1.php");
+    include("mask_conn.php");
 
     function curl()
     {
