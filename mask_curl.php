@@ -13,7 +13,6 @@
         return $arr_data;  
     }
     $arr_data=curl();
-    var_dump($arr_data);
 
     /**搜尋資料庫資料的數量**/
     function countData($db){
