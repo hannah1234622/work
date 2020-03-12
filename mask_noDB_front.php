@@ -67,8 +67,9 @@ form{
                 </select>
                 <input type="submit" name="submit" class="btn btn-secondary" value="查詢口罩庫存">
             </form>
-            <?php include("mthod2_post.php"); ?>
+            <?php include("mask_noDB_curl.php") ?>
         </div>
     </div>
 </body>
 </html>
+

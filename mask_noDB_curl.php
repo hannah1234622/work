@@ -1,6 +1,6 @@
 <?php
 
-    $county = array("請選擇","台北市","基隆市","新北市","宜蘭縣","桃園市","新竹市","新竹縣","苗栗縣","台中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣","台南市","高雄市","澎湖縣","金門縣","屏東縣","台東縣","花蓮縣","連江縣");
+    $county = array("請選擇","臺北市","基隆市","新北市","宜蘭縣","桃園市","新竹市","新竹縣","苗栗縣","臺中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣","臺南市","高雄市","澎湖縣","金門縣","屏東縣","臺東縣","花蓮縣","連江縣");
     
     function curl()
     {
@@ -43,16 +43,47 @@
         $city = $_POST["city"];
         $region = $_POST["region"];    
         $search=search(search($arrayName, $region),$county[$city]);
+        echo "<table class='table table-striped'>";
+        echo "<thead>";
+        echo "<tr>";
+        echo "<td>機構編號</td>";
+        echo "<td>藥局/機構名稱</td>";
+        echo "<td>地址</td>";
+        echo "<td>電話</td>";
+        echo "<td>口罩庫存/大人</td>";
+        echo "<td>口罩庫存/兒童</td>";
+        echo "<td>更新時間</td>";
+        echo "</thead>";
+        echo "</tr>";
+        echo "</thead>";
         for ($i=0; $i < count($search); $i++) { 
+            echo "<tr>";
+            echo "<td>";
             print_r($search[$i]['醫事機構代碼']);
+            echo "</td>";
+            echo "<td>";
             print_r($search[$i]['醫事機構名稱']);
+            echo "</td>";
+            echo "<td>";
             print_r($search[$i]['醫事機構地址']);
+            echo "</td>";
+            echo "<td>";
             print_r($search[$i]['醫事機構電話']);
+            echo "</td>";
+            echo "<td>";
             print_r($search[$i]['成人口罩剩餘數']);
+            echo "</td>";
+            echo "<td>";
             print_r($search[$i]['兒童口罩剩餘數']);
+            echo "</td>";
+            echo "<td>";
             print_r($search[$i]['來源資料時間']);
-            echo "<br/>";
-        }  
+            echo "</td>";
+            echo "<td>";
+            echo "</tr>";
+        }
+        echo "</tbody>";
+        echo "</table>";  
     } else {
         //不存在則列印出以下內容,並結束程式
         echo "<p>";

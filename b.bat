@@ -1,1 +1,0 @@
-C:\xampp\php\php.exe C:\xampp\htdocs\dashboard\test\mthod2_data.php

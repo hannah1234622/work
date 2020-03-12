@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run "cmd /c C:/xampp/htdocs/dashboard/test/mask_bat.bat",0
